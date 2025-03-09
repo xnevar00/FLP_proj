@@ -18,7 +18,7 @@ data Tree = Leaf String | Node Int Double (Tree) (Tree)
 
 -- returns a String representing the tree in a readable way
 printTree :: Tree -> String
-printTree tree = reverse ( drop 1 ( reverse (treeToString 0 tree)))
+printTree tree = init (treeToString 0 tree)
 
 treeToString :: Int -> Tree -> String
 treeToString indent (Leaf label) =
