@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------------------------
 
 import System.Environment (getArgs)
-import Common (Tree, printTree)
+import Common (printTree)
 import Task1 (parseTree, classify, prepareRecords)
 import Task2 (parseTrainingSamples, createTree)
 

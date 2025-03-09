@@ -6,7 +6,7 @@
 
 module Task2 (parseTrainingSamples, createTree) where
 
-import Data.List (sortBy, group, sort, nub, partition, minimumBy)
+import Data.List (sortBy, nub, partition, minimumBy)
 import Data.Ord (comparing)
 import Common (Tree(..), splitByComma)
 

@@ -7,7 +7,7 @@
 module Task1 (parseTree, classify, prepareRecords) where
 
 import Data.Char (isDigit, isSpace)
-import Data.List (isPrefixOf, tails, find, partition)
+import Data.List (isPrefixOf, tails, find)
 import Common (Tree(..), childIndent, splitByComma)
 
 -- function for getting word before the ':' and returns it along with the rest
@@ -39,6 +39,7 @@ getSubtrees text depth =
 
         secondSubtree = case find hasPattern suffixes of
                             Just match -> match
+                            Nothing -> ""
 
 -- base function that creates a tree from the input string
 parseTree :: String -> Int -> Tree
@@ -52,6 +53,7 @@ parseTree line depth = case getNextWord (dropWhile isSpace line) of
             newLine = goToNewLine rest
             newIndent = depth + childIndent
             (leftSubtree, rightSubtree) = getSubtrees newLine newIndent
+    _ -> Leaf "Unknown"
 
 -- base function to classify input record based on its features
 -- records with equal values as the node threshold are directed to the left subtree
