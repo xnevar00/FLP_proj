@@ -1,3 +1,6 @@
+-- FLP first project
+-- author: Veronika Nevarilova (xnevar00)
+
 import System.Environment (getArgs)
 import Data.Char (isDigit, isSpace)
 import Data.List (isPrefixOf, tails, find, sortBy, group, sort, nub, partition, minimumBy)
