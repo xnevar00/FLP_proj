@@ -19,7 +19,9 @@ getIndexAndThreshold :: String -> (Int, Double)
 getIndexAndThreshold line = (index, threshold)
     where
         index = read (takeWhile isDigit line)
-        threshold = read (takeWhile (\c -> isDigit c || c == '.') (tail (drop 1 (dropWhile (/= ',') line))))
+        rest = dropWhile (/= ',') line
+        thresholdStr = takeWhile (\c -> isDigit c || c == '.' || c == '-' || c == 'e') (dropWhile isSpace (tail rest))
+        threshold = read thresholdStr
 
 -- shifts the string to the next new line
 goToNewLine:: String -> String

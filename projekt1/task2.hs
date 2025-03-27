@@ -6,7 +6,7 @@
 
 module Task2 (parseTrainingSamples, createTree) where
 
-import Data.List (sortBy, nub, partition, minimumBy)
+import Data.List (sortBy, nub, partition, minimumBy, nubBy)
 import Data.Ord (comparing)
 import Common (Tree(..), splitByComma)
 
@@ -38,6 +38,10 @@ giniValueOfOnePart samples = result
         classCounts = map (\c -> length (filter (\(TrainingSample label _) -> label == c) samples)) uniqueClasses
         result = 1.0 - sum [(fromIntegral count / total) ** 2 | count <- classCounts]
 
+-- leaves only unique records
+uniqueByFeature :: Int -> [TrainingSample] -> [TrainingSample]
+uniqueByFeature index = nubBy (\(TrainingSample _ f1) (TrainingSample _ f2) -> f1 !! index == f2 !! index)
+
 -- computes the whole gini value of situation where the samples would be split according to the threshold of certain index
 -- gini = size(group1)/total_size * gini(group1) + size(group2)/total_size * gini(group2)
 computeSplitGini :: Int -> Double -> [TrainingSample] -> Double
@@ -58,16 +62,17 @@ mean a b = (a + b) / 2
 computeThresholdsAndGiniValues :: Int -> [TrainingSample] -> [(Double, Double)]
 computeThresholdsAndGiniValues index samples = map computeGiniForThreshold thresholds
     where
-        sortedSamples = sortSamplesByFeature index samples
+        sortedSamples = sortSamplesByFeature index (uniqueByFeature index samples)
         featureValues = [features !! index | TrainingSample _ features <- sortedSamples]
         thresholds = nub (zipWith mean featureValues (tail featureValues))
         computeGiniForThreshold thr = (thr, computeSplitGini index thr samples)
 
 -- returns the (threshold, gini value) of the best choice for split, based on the lowest gini value
 getBestThresholdForFeature :: Int -> [TrainingSample] -> (Double, Double)
-getBestThresholdForFeature index samples = minimumBy (comparing snd) thresholdsAndGinis
-    where
-        thresholdsAndGinis = computeThresholdsAndGiniValues index samples
+getBestThresholdForFeature index samples =
+    case computeThresholdsAndGiniValues index samples of
+        [] -> (0/0, 1.0) -- only one record, can't compute threshold and gini
+        thresholdsAndGinis -> minimumBy (comparing snd) thresholdsAndGinis
 
 -- is True when all the training samples share the same class
 onlyOneClass :: [TrainingSample] -> Bool
