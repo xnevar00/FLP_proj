@@ -1,2 +1,5 @@
-# FLP_proj
-Projekty do předmětu FLP na VUT FIT
+# Projects for FLP course at BUT FIT
+
+## Project 1
+
+Evaluation: 12/12 + 2 extra points
