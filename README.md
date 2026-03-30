@@ -1,4 +1,4 @@
-# Projects for FLP course at BUT FIT
+# Projects for FLP course at BUT FIT (ac. year 2024/2025)
 
 ## Project 1
 
