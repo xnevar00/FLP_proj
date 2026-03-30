@@ -1,0 +1,13 @@
+dataset,split,train_accuracy,test_accuracy,reference_train_accuracy,reference_test_accuracy,test_difference,train_time
+penguins_all.csv,0, 1.000, 1.000, 1.000, 1.000, 0.000, 0.300
+penguins_all.csv,0.25, 1.000, 0.976, 1.000, 0.976, 0.000, 0.329
+penguins_all.csv,0.5, 1.000, 0.910, 1.000, 0.958, 0.048, 0.189
+iris_all.csv,0, 1.000, 1.000, 1.000, 1.000, 0.000, 0.189
+iris_all.csv,0.25, 1.000, 1.000, 1.000, 1.000, 0.000, 0.360
+iris_all.csv,0.5, 1.000, 1.000, 1.000, 1.000, 0.000, 0.354
+housing_all.csv,0, 1.000, 1.000, 1.000, 1.000, 0.000, 0.979
+housing_all.csv,0.25, 1.000, 0.636, 1.000, 0.646, 0.010, 0.714
+housing_all.csv,0.5, 1.000, 0.670, 1.000, 0.640,-0.030, 0.534
+wines_all.csv,0, 1.000, 1.000, 1.000, 1.000, 0.000, 2.092
+wines_all.csv,0.25, 1.000, 0.556, 1.000, 0.577, 0.021, 1.561
+wines_all.csv,0.5, 1.000, 0.528, 1.000, 0.531, 0.003, 0.904
